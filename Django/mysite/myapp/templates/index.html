@@ -1,0 +1,30 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Приветствие</title>
+    <!-- Подключаем Bootstrap для базовой стилизации -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f7f7f7; padding-top: 50px; font-family: Arial, sans-serif; color: #333; }
+        h1 { text-align: center; margin-bottom: 30px; }
+        form { width: 50%; margin: auto; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,.1); padding: 20px; background-color: white; }
+        input[type="submit"] { display: block; width: 100%; height: 40px; margin-top: 20px; cursor: pointer; background-color: #0d6efd; color: white; border: none; border-radius: 5px; transition: all 0.3s ease-in-out; }
+        input[type="submit"]:hover { background-color: #0a58ca; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Привет! Как вас зовут?</h1>
+    {% if error_message %}
+        <p style="color: red;">{{ error_message }}</p>
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}  <!-- Защита от межсайтового поддельного запроса (CSRF) -->
+        {{ form.as_p }}
+        <input type="submit" value="Отправить"/>
+    </form>
+</div>
+</body>
+</html>
